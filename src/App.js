@@ -1,12 +1,15 @@
 import {BrowserRouter, Routes,Route} from 'react-router-dom'
+import { useState } from 'react';
 import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
 import Error from './pages/Error';
 import SharedLayout from './pages/SharedLayout';
 import SingleProduct from './pages/SingleProduct'
-
+import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
 function App() {
+  const [user,setUser]=useState(null)
   return <BrowserRouter>
   <nav>Our Navbar</nav>
   <Routes>
@@ -17,7 +20,8 @@ function App() {
       <Route path="products/:productId" element={<SingleProduct/>}/>
       <Route path="*" element={<Error/>}/>
     </Route>
-    
+    <Route path="login" element={<Login setUser={setUser}></Login>}/>
+    <Route path="dashboard" element={<Dashboard user={user}></Dashboard>}/>
     </Routes>
     <footer>our footer</footer>
     </BrowserRouter>
